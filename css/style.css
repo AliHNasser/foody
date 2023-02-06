@@ -18,25 +18,30 @@ html {
 body {
     font-family: var(--main-font);
 }
+a {
+    text-decoration: none;
+}
 /* End Global Rules */
 /* Start header */
 header {
     background-color: rgb(0 0 0 / 60%);
-    position: absolute;
+    position: fixed;
     width: 100%;
     top: 0;
     left: 0;
-    z-index: 2;
+    z-index: 3;
 }
 header .container {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     position: relative;
-    min-height: 70px;
+    min-height: 100px;
 }
 header .container .logo {
     flex-basis: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 header .container .logo img {
     max-width: 100%;
@@ -53,7 +58,11 @@ header .container nav {
     flex-basis: 70%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+}
+@media (max-width: 991px) {
+    header .container nav {
+        align-items: center;
+    }
 }
 @media (min-width: 992px) and (max-width: 1199px) {
     header .container nav {
@@ -77,8 +86,9 @@ header .container nav .button {
 }
 header .container nav .button span {
     width: 100%;
-    height: 2px;
+    height: 4px;
     background-color: white;
+    border-radius: 4px;
 }
 header .container nav .button span:nth-child(2) {
     width: 60%;
@@ -94,7 +104,6 @@ header .container nav .links {
     display: flex;
     flex-basis: 90%;
     justify-content: space-between;
-    align-items: center;
 }
 @media (max-width: 991px) {
     header .container nav .links {
@@ -103,7 +112,7 @@ header .container nav .links {
         top: 100%;
         left: 0;
         width: 100%;
-        background-color: rgb(0 0 0 / 75%);
+        background-color: rgb(0 0 0 / 60%);
         flex-direction: column;
     }
     header .container nav:hover .links {
@@ -112,8 +121,6 @@ header .container nav .links {
 }
 header .container nav .links ul {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     flex-basis: 80%;
     list-style: none;
 }
@@ -124,21 +131,29 @@ header .container nav .links ul {
     }
 }
 header .container nav .links ul li {
-    padding: 20px;
-    transition: var(--transition-duration);
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    text-align: center;
 }
-header .container nav .links ul li:hover {
+header .container nav .links ul li a {
+    padding: 20px;
+    text-decoration: none;
+    color: white;
+    transition: var(--transition-duration);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 100%;
+}
+header .container nav .links ul li a:hover {
     background-color: #b8cb3b;
 }
 @media (max-width: 991px) {
-    header .container nav .links ul li {
+    header .container nav .links ul li a {
         width: 100%;
         text-align: center;
     }
-}
-header .container nav .links ul li a {
-    text-decoration: none;
-    color: white;
 }
 header .container nav .links .social {
     display: flex;
@@ -148,15 +163,23 @@ header .container nav .links .social {
 }
 @media (max-width: 991px) {
     header .container nav .links .social {
-        padding: 20px;
-        width: 100%;
-        justify-content: space-evenly;
+        align-items: stretch;
     }
 }
 header .container nav .links .social a {
     color: white;
-    font-size: 25px;
+    font-size: 30px;
     transition: var(--transition-duration);
+}
+@media (max-width: 991px) {
+    header .container nav .links .social a {
+        display: flex;
+        flex: 1;
+        justify-content: center;
+        text-decoration: none;
+        padding: 20px;
+        font-size: 40px;
+    }
 }
 header .container nav .links .social a:first-child:hover {
     color: #3f5793;
@@ -166,6 +189,11 @@ header .container nav .links .social a:nth-child(2):hover {
 }
 header .container nav .links .social a:last-child:hover {
     color: #2aa9e0;
+}
+@media (max-width: 991px) {
+    header .container nav .links .social a:hover {
+        background-color: white;
+    }
 }
 /* End header */
 /* Start Hero Image */
@@ -178,7 +206,6 @@ header .container nav .links .social a:last-child:hover {
     background-position: center center;
     position: relative;
     z-index: 1;
-    margin-bottom: 200px;
 }
 @media (max-width: 991px) {
     .hero {
@@ -257,9 +284,9 @@ header .container nav .links .social a:last-child:hover {
     flex-wrap: wrap;
     position: absolute;
     z-index: 2;
-    top: 107.5%;
+    bottom: -200px;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0);
     background-color: white;
 }
 @media (max-width: 991px) {
@@ -286,6 +313,9 @@ header .container nav .links .social a:last-child:hover {
 .about .text {
     flex-basis: 50%;
     padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 @media (max-width: 991px) {
     .about .text {
@@ -318,16 +348,22 @@ header .container nav .links .social a:last-child:hover {
     padding: 10px 50px;
     border-radius: 5px;
     transition: var(--transition-duration);
+    align-self: flex-start;
 }
 .about .text a:hover {
     background-color: #b8cb3b;
     color: black;
 }
+@media (max-width: 991px) {
+    .about .text a {
+        align-self: center;
+    }
+}
 /* End About */
 /* Start Quote */
 .quote {
-    padding-top: 200px;
-    padding-bottom: 200px;
+    padding-top: 300px;
+    padding-bottom: 300px;
     background-image: url(../images/quote-image.jpg);
     background-position: center center;
     background-size: cover;
@@ -451,7 +487,7 @@ header .container nav .links .social a:last-child:hover {
     flex-basis: 50%;
     background-color: #9fb0a5;
     color: white;
-    padding: 40px;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -481,7 +517,7 @@ header .container nav .links .social a:last-child:hover {
     margin: 0 auto;
     color: white;
     padding: 10px;
-    border-radius: 50%;
+    border-radius: 5px;
 }
 /* End Menu */
 /* Start Video */
@@ -583,6 +619,7 @@ header .container nav .links .social a:last-child:hover {
     border: none;
     background-color: var(--main-background-color);
     color: white;
+    cursor: pointer;
 }
 .newsletter .container .text form input[type="email"]:focus,
 .newsletter .container .text form input[type="submit"]:focus {
@@ -591,6 +628,9 @@ header .container nav .links .social a:last-child:hover {
 .newsletter .container .images {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+.newsletter .container .images .image {
+    display: flex;
 }
 .newsletter .container .images .image img {
     max-width: 100%;
@@ -604,17 +644,17 @@ header .container nav .links .social a:last-child:hover {
 }
 .top-footer .container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    gap: 30px;
 }
 @media (max-width: 991px) {
     .top-footer .container {
         flex-direction: column;
-        gap: 40px;
     }
 }
+.top-footer .container > div {
+    flex-basis: 50%;
+}
 .top-footer .container .locations {
-    flex-basis: 45%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -627,7 +667,6 @@ header .container nav .links .social a:last-child:hover {
 }
 @media (max-width: 991px) {
     .top-footer .container .locations {
-        justify-content: center;
         text-align: center;
     }
 }
@@ -636,6 +675,7 @@ header .container nav .links .social a:last-child:hover {
     flex-basis: 100%;
     font-weight: 400;
     margin-bottom: 30px;
+    text-align: center;
 }
 .top-footer .container .locations h2::before {
     content: "\f3c5";
@@ -645,17 +685,12 @@ header .container nav .links .social a:last-child:hover {
     color: #b8cb3b;
 }
 .top-footer .container .locations address {
-    flex-basis: 45%;
+    flex-basis: 50%;
     font-style: normal;
     line-height: 2;
-}
-@media (min-width: 768px) and (max-width: 991px) {
-    .top-footer .container .locations address {
-        flex-basis: 30%;
-    }
+    text-align: center;
 }
 .top-footer .container .hours {
-    flex-basis: 45%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -671,6 +706,7 @@ header .container nav .links .social a:last-child:hover {
     flex-basis: 100%;
     font-weight: 400;
     margin-bottom: 30px;
+    text-align: center;
 }
 .top-footer .container .hours h2::before {
     content: "\f252";
@@ -680,8 +716,9 @@ header .container nav .links .social a:last-child:hover {
     color: #b8cb3b;
 }
 .top-footer .container .hours p {
-    flex-basis: 45%;
+    flex-basis: 50%;
     line-height: 2;
+    text-align: center;
 }
 /* End Top Footer */
 /* Start Footer */
@@ -694,10 +731,10 @@ footer .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
 @media (max-width: 767px) {
     footer .container {
-        flex-direction: column;
         gap: 30px;
         text-align: center;
     }
@@ -705,6 +742,13 @@ footer .container {
 footer .container p span {
     color: #b8cb3b;
     font-weight: bolder;
+}
+@media (max-width: 767px) {
+    footer .container p {
+        flex-basis: 100%;
+        text-align: center;
+        font-size: 1.1rem;
+    }
 }
 footer .container .social {
     flex-basis: 10%;
@@ -716,6 +760,9 @@ footer .container .social {
 @media (max-width: 767px) {
     footer .container .social {
         order: -1;
+        flex-basis: 100%;
+        justify-content: center;
+        gap: 40px;
     }
 }
 footer .container .social a {
@@ -732,5 +779,10 @@ footer .container .social a:nth-child(2):hover {
 }
 footer .container .social a:last-child:hover {
     color: #2aa9e0;
+}
+@media (max-width: 767px) {
+    footer .container .social a {
+        font-size: 40px;
+    }
 }
 /* End Footer */
